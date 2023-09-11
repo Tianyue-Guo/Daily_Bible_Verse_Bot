@@ -1,11 +1,12 @@
 import discord
 import asyncio
-from nextcord.ext import commands, tasks
+from nextcord.ext import commands
 import datetime
 import requests
 import requests
 from bs4 import BeautifulSoup
-import schedule
+import os
+
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -49,4 +50,5 @@ async def on_ready():
     print(f'Logged in as {bot.user.name}')
     await send_daily_message()
 
-bot.run("MTE1MDgyMjIxODIzMDY2MTE3Mw.G8H74A.YAdGbb_JBiD4eq7FHfAYISDK8tHqN0dtUow67E")
+token = os.environ.get('TOKEN')
+bot.run(token)

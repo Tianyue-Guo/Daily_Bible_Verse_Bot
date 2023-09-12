@@ -50,7 +50,7 @@ def bible_response():
 async def verse(ctx):
 	# 804755881266642987 - alexei szpilman
 	# 1150874642773459075 - daily rolling
-	allowed_channel_id = 804755881266642987
+	allowed_channel_id = 1150874642773459075
 	if ctx.channel.id == allowed_channel_id:
 		bible_daily_verse = bible_response()
 		await ctx.send(bible_daily_verse)

@@ -47,4 +47,3 @@ async def on_ready():
 
 token = os.environ.get('TOKEN')
 bot.run(token)
-#MTE1MDgyMjIxODIzMDY2MTE3Mw.Gv8YUY.z32ioKF0SkGRq8qF0vsqHpEqlFdDmQF83T8pvc

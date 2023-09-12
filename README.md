@@ -1,3 +1,3 @@
-Daily Bible Verse Script
+# Daily Bible Verse Script (Python)
 
-Python
+Currently, the only script that matters is bot.py. Look at this file for reference. 

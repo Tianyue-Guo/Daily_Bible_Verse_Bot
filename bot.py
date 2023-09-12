@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from nextcord.ext import commands
+from discord.ext import commands
 import datetime
 import requests
 import requests

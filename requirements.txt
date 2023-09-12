@@ -1,0 +1,4 @@
+discord
+nextcord
+requests
+beautifulsoup4

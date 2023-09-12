@@ -11,4 +11,4 @@ Currently, the only script that matters is bot.py. Look at this file for referen
 
  ## How to invoke command as a user?
 
- In daily-bible-verse channel, type "!verse" and enter. Bible Bot will share the verse of the day. 
+ In daily-bible-verse channel from Daily Rolling server, type "!verse" and enter. Bible Bot will share the verse of the day. 

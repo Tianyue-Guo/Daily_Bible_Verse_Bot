@@ -35,7 +35,7 @@ def bible_response():
 # 		print(wait_time) 
 # 		await asyncio.sleep(wait_time)
         
-# 		channel = bot.get_channel(1150874642773459075)
+# 		channel = bot.get_channel()
 # 		bible_daily_verse = bible_response()
 # 		await channel.send(bible_daily_verse)
 # 		then = datetime.datetime.now() + datetime.timedelta(days=1)
@@ -48,9 +48,7 @@ def bible_response():
 
 @bot.command(name="verse")
 async def verse(ctx):
-	# 804755881266642987 - alexei szpilman
-	# 1150874642773459075 - daily rolling
-	allowed_channel_id = 1150874642773459075
+	allowed_channel_id = 1
 	if ctx.channel.id == allowed_channel_id:
 		bible_daily_verse = bible_response()
 		await ctx.send(bible_daily_verse)

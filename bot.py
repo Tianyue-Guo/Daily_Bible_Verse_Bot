@@ -7,8 +7,9 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-
-bot = commands.Bot(command_prefix='!')
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 def bible_response():
 	#https://www.verseoftheday.com/
@@ -23,27 +24,42 @@ def bible_response():
 	else:
 		return "No Message today. Enjoy Studying!"
 
-
-async def send_daily_message():
-	then = datetime.datetime.now()
-	while True:
-		now = datetime.datetime.now()
+# timed messages
+# async def send_daily_message():
+# 	then = datetime.datetime.now()
+# 	while True:
+# 		now = datetime.datetime.now()
 		
-		# then = now.replace(hour=17, minute=35)
-		wait_time = (then-now).total_seconds()
-		print(wait_time) 
-		await asyncio.sleep(wait_time)
+# 		# then = now.replace(hour=17, minute=35)
+# 		wait_time = (then-now).total_seconds()
+# 		print(wait_time) 
+# 		await asyncio.sleep(wait_time)
         
-		channel = bot.get_channel(1150874642773459075)
-		bible_daily_verse = bible_response()
-		await channel.send(bible_daily_verse)
-		then = datetime.datetime.now() + datetime.timedelta(days=1)
+# 		channel = bot.get_channel(1150874642773459075)
+# 		bible_daily_verse = bible_response()
+# 		await channel.send(bible_daily_verse)
+# 		then = datetime.datetime.now() + datetime.timedelta(days=1)
 
+# @bot.command(name="pic")
+# async def Dog(ctx):
+# 	response = requests.get("https://dog.ceo/api/breeds/image/random")
+# 	image_link = response.json()["message"]
+# 	await ctx.send(image_link)
+
+@bot.command(name="verse")
+async def verse(ctx):
+	# 804755881266642987 - alexei szpilman
+	# 1150874642773459075 - daily rolling
+	allowed_channel_id = 804755881266642987
+	if ctx.channel.id == allowed_channel_id:
+		bible_daily_verse = bible_response()
+		await ctx.send(bible_daily_verse)
+	
 
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
-    await send_daily_message()
+
 
 token = os.environ.get('TOKEN')
 bot.run(token)

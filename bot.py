@@ -8,11 +8,6 @@ from bs4 import BeautifulSoup
 import os
 
 
-intents = discord.Intents.default()
-intents.message_content = True
-intents.typing = False
-intents.presences = False
-
 bot = commands.Bot(command_prefix='!')
 
 def bible_response():
@@ -52,3 +47,4 @@ async def on_ready():
 
 token = os.environ.get('TOKEN')
 bot.run(token)
+#MTE1MDgyMjIxODIzMDY2MTE3Mw.Gv8YUY.z32ioKF0SkGRq8qF0vsqHpEqlFdDmQF83T8pvc

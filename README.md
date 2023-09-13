@@ -6,6 +6,7 @@ Currently, the only script that matters is bot.py. Look at this file for referen
 
  In daily-bible-verse channel from Daily Rolling server, type "!verse" and enter. Bible Bot will share the verse of the day. 
 
+ Also, everyday at 8AM Bible Bot sends the verse as well. (timed message feature)
 
  ## Where is the script hosted and run?
 

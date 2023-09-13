@@ -25,20 +25,28 @@ def bible_response():
 		return "No Message today. Enjoy Studying!"
 
 # timed messages
-# async def send_daily_message():
-# 	then = datetime.datetime.now()
-# 	while True:
-# 		now = datetime.datetime.now()
-		
-# 		# then = now.replace(hour=17, minute=35)
-# 		wait_time = (then-now).total_seconds()
-# 		print(wait_time) 
-# 		await asyncio.sleep(wait_time)
+async def send_daily_message():
+	now = datetime.datetime.now()
+	then = datetime.datetime(2023, 9, 13, 8, 0, 0)
+	wait_time = (then-now).total_seconds()
+	print("wait time: ", wait_time) 
+	await asyncio.sleep(wait_time)
+	channel = bot.get_channel(1) # PLACEHOLDER
+	bible_daily_verse = bible_response()
+	await channel.send(bible_daily_verse)
+
+	while True:
+		now = then
+		then = then + datetime.timedelta(seconds=10)
+		# then = now.replace(hour=17, minute=35)
+		wait_time = (then-now).total_seconds()
+		print("wait time: ", wait_time) 
+		await asyncio.sleep(wait_time)
         
-# 		channel = bot.get_channel()
-# 		bible_daily_verse = bible_response()
-# 		await channel.send(bible_daily_verse)
-# 		then = datetime.datetime.now() + datetime.timedelta(days=1)
+		channel = bot.get_channel(1) # PLACEHOLDER
+		bible_daily_verse = bible_response()
+		await channel.send(bible_daily_verse)
+		
 
 # @bot.command(name="pic")
 # async def Dog(ctx):
@@ -48,7 +56,7 @@ def bible_response():
 
 @bot.command(name="verse")
 async def verse(ctx):
-	allowed_channel_id = 1
+	allowed_channel_id = 1 # PLACEHOLDER
 	if ctx.channel.id == allowed_channel_id:
 		bible_daily_verse = bible_response()
 		await ctx.send(bible_daily_verse)
@@ -57,6 +65,7 @@ async def verse(ctx):
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
+    await send_daily_message()
 
 
 token = os.environ.get('TOKEN')

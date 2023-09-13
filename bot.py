@@ -11,7 +11,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-def bible_response():
+def bible_response(): # helper function
 	#https://www.verseoftheday.com/
 	response = requests.get("https://www.verseoftheday.com/")
 	if response.status_code == 200:
@@ -24,7 +24,7 @@ def bible_response():
 	else:
 		return "No Message today. Enjoy Studying!"
 
-# timed messages
+# message scheduler
 async def send_daily_message():
 	now = datetime.datetime.now()
 	then = datetime.datetime(2023, 9, 13, 8, 0, 0)
@@ -37,7 +37,7 @@ async def send_daily_message():
 
 	while True:
 		now = then
-		then = then + datetime.timedelta(seconds=10)
+		then = then + datetime.timedelta(days=1)
 		# then = now.replace(hour=17, minute=35)
 		wait_time = (then-now).total_seconds()
 		print("wait time: ", wait_time) 
@@ -54,6 +54,7 @@ async def send_daily_message():
 # 	image_link = response.json()["message"]
 # 	await ctx.send(image_link)
 
+# command bot
 @bot.command(name="verse")
 async def verse(ctx):
 	allowed_channel_id = 1 # PLACEHOLDER
@@ -61,12 +62,12 @@ async def verse(ctx):
 		bible_daily_verse = bible_response()
 		await ctx.send(bible_daily_verse)
 	
-
+# main event
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}')
     await send_daily_message()
 
 
-token = os.environ.get('TOKEN')
+token = os.environ.get('TOKEN') # env var
 bot.run(token)
